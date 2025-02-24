@@ -1,6 +1,6 @@
 export interface AdditionalSkill {
   additionalSkillId: string;
-  logo: string;
+  image: string;
   userId: string;
   title: string;
   keys: AdditionalSkillKey[];

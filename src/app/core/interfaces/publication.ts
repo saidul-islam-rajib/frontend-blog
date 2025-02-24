@@ -1,6 +1,6 @@
 export interface Publication {
   publicationId: string;
-  image: string;
+  publicationImage: string;
   userId: string;
   title: string;
   summary: string;

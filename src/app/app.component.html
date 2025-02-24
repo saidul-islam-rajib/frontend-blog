@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--
+    - primary meta tags
+  -->
+  <title>Rajib - Perosonal Blog Website</title>
+  <meta name="title" content="Rajib - Perosonal Blog Website">
+  <meta name="description" content="This is a blog html template made by codewithsadee">
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body id="top">
+
+  <!--
+    - #HEADER
+  -->
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="home" class="logo">
+        <img src="../../assets/images/logo.png" width="80" height="37" alt="Rajib logo">
+      </a>
+
+      <nav class="navbar" data-navbar>
+
+        <div class="navbar-top" data-nav-toggler>
+          <a href="#" class="logo">
+            <img src="../../assets/images/logo.png" width="100" height="37" alt="logo">
+          </a>
+        </div>
+
+        <ul class="navbar-list">
+
+          <li>
+            <a href="home" class="navbar-link hover-1" routerLinkActive="active" data-nav-toggler>Home</a>
+          </li>
+
+          <li>
+            <a href="topics" class="navbar-link hover-1" routerLinkActive="active" data-nav-toggler>Topics</a>
+          </li>
+
+          <li>
+            <a href="recent" class="navbar-link hover-1" routerLinkActive="active" data-nav-toggler>Recent Post</a>
+          </li>
+
+          <li>
+            <a href="projects" class="navbar-link hover-1" routerLinkActive="active" data-nav-toggler>Projects</a>
+          </li>
+
+          <li>
+            <a href="about" class="navbar-link hover-1" routerLinkActive="active" data-nav-toggler>About</a>
+          </li>
+
+        </ul>
+
+        <div class="navbar-bottom">
+
+          <div class="profile-card">
+            <img src="./assets/images/Profile.png" width="48" height="48" alt="Rajib" class="profile-banner">
+
+            <div>
+              <p class="card-title">Saidul Islam Rajib !</p>
+
+              <p class="card-subtitle">
+                Let the love soar freely, unbound by direction.
+              </p>
+            </div>
+          </div>
+
+          <p>A curious and positive individual who loves exploring new places, especially on a rickshaw and is passionate about learning and tackling challenges.</p>
+        </div>
+
+        <p class="copyright-text">
+          Copyright 2023 © Rajib
+        </p>
+      </nav>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+    </div>
+  </header>
+
+
+  <main style="margin-top: 40px; margin-bottom: 40px;">
+    <router-outlet></router-outlet>
+  </main>
+
+
+  <!--
+    - #BACK TO TOP
+  -->
+  <a class="back-top-btn" aria-label="back to top" (click)="scrollToTop()" data-back-top-btn>
+    <i class="fa-sharp fa-solid fa-arrow-up"></i>
+  </a>
+
+
+  <!--
+    - font awesome cdn
+  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</body>
+</html>
+

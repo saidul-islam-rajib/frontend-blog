@@ -1,0 +1,444 @@
+<!--
+  - #ABOUT PAGE
+-->
+<section class="hero" id="about" aria-label="about">
+  <div class="container" *ngIf="user && user.userId">
+    <div class="hero-content">
+      <h1 class="headline headline-2 section-title">
+        <span class="span">{{ user.userName }}</span>
+      </h1>
+
+      <p class="hero-text">
+        {{ user.userBio }}
+      </p>
+    </div>
+
+    <div class="hero-banner">
+      <img
+        src="./assets/images/second.png"
+        width="327"
+        height="490"
+        alt="Rajib Ahmed"
+        class="w-100"
+      />
+      <img
+        src="./assets/images/pattern-2.svg"
+        width="27"
+        height="26"
+        alt="shape"
+        class="shape shape-1"
+      />
+      <img
+        src="./assets/images/pattern-3.svg"
+        width="27"
+        height="26"
+        alt="shape"
+        class="shape shape-2"
+      />
+    </div>
+
+    <img
+      src="./assets/images/shadow-1.svg"
+      width="500"
+      height="800"
+      alt=""
+      class="hero-bg hero-bg-1"
+    />
+    <img
+      src="./assets/images/shadow-2.svg"
+      width="500"
+      height="500"
+      alt=""
+      class="hero-bg hero-bg-2"
+    />
+  </div>
+</section>
+
+<section class="section-2" id="experiences" aria-label="experiences">
+  <div class="container">
+    <div class="post-aside grid-list" *ngIf="experiences.length" >
+      <div class="card aside-card">
+        <h3 class="headline headline-2 aside-title">
+          <span class="span">Experiences</span>
+        </h3>
+        <ul class="experience-list" *ngFor="let data of experiences">
+          <li>
+            <div class="experience-card">
+              <figure
+                class="card-banner img-holder"
+                style="--width: 64; --height: 64"
+              >
+                <img
+                  [src]="getImage(data.companyLogo)"
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                  alt="Creating is a privilege but it’s also a gift"
+                  class="img-cover"
+                />
+              </figure>
+
+              <div class="card-content">
+                <div class="company-content">
+                  <h4
+                    class="headline headline-4 card-title"
+                    style="width: 100%; margin-bottom: 0px"
+                  >
+                    <a href="#" class="link hover-2"
+                      >{{ data.companyName }} ({{ data.shortName }})</a
+                    >
+                  </h4>
+                  <p class="experience-month">
+                    {{ data.isFullTimeEmployee ? "Full Time" : "" }},
+                    {{
+                      calculateDuration(
+                        data.startDate,
+                        data.endDate,
+                        data.isCurrentEmployee
+                      )
+                    }}
+                  </p>
+                </div>
+
+                <div class="warpper" style="margin-bottom: 5px">
+                  <h4
+                    class="headline card-title"
+                    style="width: 100%; margin-bottom: 0px"
+                  >
+                    <a class="link hover-2">{{ data.designation }}</a>
+                  </h4>
+                  <p class="experience-month">
+                    {{ data.startDate | date : "MMMM dd, yyyy" }}
+                    {{
+                      data.isCurrentEmployee
+                        ? "to Present"
+                        : " to " + (data.endDate | date : "MMMM dd, yyyy")
+                    }}
+                  </p>
+                </div>
+                <div class="card-grid-contianer">
+                  <h4 class="data-list card-title">Role & Responsibilities</h4>
+                  <ul *ngFor="let section of data.experienceSection">
+                    <li style="font-size: 12px">
+                      <b>-</b> {{ section.sectionDescription }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-2" id="education" aria-label="education">
+  <div class="container">
+    <div class="post-aside grid-list" *ngIf="educationList.length" >
+      <div class="card aside-card">
+        <h3 class="headline headline-2 aside-title">
+          <span class="span">Education</span>
+        </h3>
+        <ul class="experience-list" *ngFor="let education of educationList">
+          <li>
+            <div class="experience-card">
+              <figure
+                class="card-banner img-holder"
+                style="--width: 64; --height: 64"
+              >
+                <img
+                  [src]="getImage(education.instituteLogo)"
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                  alt="Creating is a privilege but it’s also a gift"
+                  class="img-cover"
+                />
+              </figure>
+
+              <div class="card-content">
+                <div class="company-content">
+                  <h4
+                    class="headline headline-4 card-title"
+                    style="width: 100%; margin-bottom: 0px"
+                  >
+                    <a href="#" class="link hover-2">{{
+                      education.instituteName
+                    }}</a>
+                  </h4>
+                  <label for="">{{ education.department }}</label>
+                  <p class="experience-month">
+                    {{ education.startDate | date : "MMMM dd, yyyy" }} to
+                    {{ education.endDate | date : "MMMM dd, yyyy" }}
+                  </p>
+                </div>
+                <div class="card-grid-contianer">
+                  <h4 class="data-list card-title">
+                    Learning && Skills && Achievements
+                  </h4>
+                  <ul *ngFor="let section of education.educationSection">
+                    <li style="font-size: 12px">
+                      <b>-</b> {{ section.sectionDescription }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-2" id="publications" aria-label="publications">
+  <div class="container">
+    <div class="post-aside grid-list" *ngIf="publicationList.length" >
+      <div class="card aside-card">
+        <h3 class="headline headline-2 aside-title">
+          <span class="span">Thesis or Publications</span>
+        </h3>
+        <ul class="experience-list" *ngFor="let publication of publicationList">
+          <li>
+            <div class="experience-card">
+              <figure
+                class="card-banner img-holder"
+                style="--width: 64; --height: 64"
+              >
+                <img
+                  [src]="getImage(publication.image)"
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                  alt="Creating is a privilege but it’s also a gift"
+                  class="img-cover"
+                />
+              </figure>
+
+              <div class="card-content">
+                <div class="company-content">
+                  <h4
+                    class="headline headline-4 card-title"
+                    style="width: 100%; margin-bottom: 0px"
+                  >
+                    <a href="#" class="link hover-2">{{ publication.title }}</a>
+                  </h4>
+                  <p>
+                    {{ publication.date | date : "MMMM dd, yyyy" }}
+                  </p>
+                </div>
+                <div class="warpper" style="margin-bottom: 5px">
+                  <h5
+                    class="headline card-title"
+                    style="width: 100%; margin-bottom: 0px"
+                  >
+                    <p href="#" class="link hover-2">
+                      {{ publication.journalName }}
+                    </p>
+                  </h5>
+                </div>
+                <div class="card-grid-contianer">
+                  <p class="data-list">
+                    {{ publication.summary }}
+                  </p>
+                </div>
+
+                <div class="card-grid-contianer">
+                  <h4 class="data-list card-title">Topic, Skill & Keys</h4>
+                  <ul *ngFor="let item of publication.keys">
+                    <li style="font-size: 12px"><b>-</b> {{ item.key }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-2" id="projects" aria-label="projects">
+  <div class="container">
+    <div class="post-aside grid-list" *ngIf="projectList.length" >
+      <div class="card aside-card">
+        <h3 class="headline headline-2 aside-title">
+          <span class="span">Projects</span>
+        </h3>
+        <ul class="grid-list" *ngFor="let project of projectList">
+          <li>
+            <div class="recent-post-card">
+              <figure
+                class="card-banner img-holder"
+                style="--width: 350; --height: 200; background-color: c"
+              >
+                <img
+                  [src]="getImage(project.projectImage)"
+                  width="200"
+                  height="100"
+                  loading="lazy"
+                  alt="Helpful Tips for Working from Home as a Freelancer"
+                  class="img-cover"
+                />
+              </figure>
+              <div class="card-content">
+                <div class="company-content">
+                  <h4
+                    class="headline headline-4 card-title"
+                    style="width: 100%; margin-bottom: 0px"
+                  >
+                    <a href="#" class="link hover-2">{{
+                      project.projectTitle
+                    }}</a>
+                  </h4>
+                  <p class="experience-month">
+                    {{ project.displayDate | date : "MMMM dd, yyyy" }}
+                  </p>
+                </div>
+                <div class="card-grid-contianer">
+                  <p class="data-list">
+                    {{ project.projectSummary }}
+                  </p>
+                  <a class="source-link" href="{{ project.projectSrcLink }}"
+                    >Open Source</a
+                  >
+                </div>
+                <div class="card-wrapper">
+                  <div
+                    class="card-tag"
+                    *ngFor="let projectTagList of project.projectSection"
+                  >
+                    <a
+                      *ngFor="let item of projectTagList.projectTags"
+                      class="span hover-2"
+                      ># {{ item.projectTagName }}</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section
+  class="section-2"
+  id="additional-skills-hobbies"
+  aria-label="additional-skills-hobbies"
+>
+  <div class="container">
+    <div class="post-aside grid-list" *ngIf="additionalSkillList.length" >
+      <div class="card aside-card">
+        <h3 class="headline headline-2 aside-title">
+          <span class="span">Additional Skills && Hobbies</span>
+        </h3>
+        <ul class="experience-list" *ngFor="let skill of additionalSkillList">
+          <li>
+            <div class="experience-card">
+              <figure
+                class="card-banner img-holder"
+                style="--width: 64; --height: 64"
+              >
+                <img
+                  [src]="getImage(skill.logo)"
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                  alt="Every day, in every city and town across the country"
+                  class="img-cover"
+                />
+              </figure>
+              <div class="card-content">
+                <div class="company-content">
+                  <h4
+                    class="headline headline-4 card-title"
+                    style="width: 100%; margin-bottom: 0px"
+                  >
+                    <a href="#" class="link hover-2">{{ skill.title }}</a>
+                  </h4>
+                </div>
+
+                <div class="card-grid-contianer">
+                  <ul *ngFor="let item of skill.keys">
+                    <li style="font-size: 12px"><b>-</b> {{ item.key }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-2" id="interests" aria-label="interests">
+  <div class="container">
+    <div class="post-aside grid-list" *ngIf="interstList.length" >
+      <div class="card aside-card">
+        <h3 class="headline headline-2 aside-title">
+          <span class="span">Interests</span>
+        </h3>
+        <ul class="experience-list" *ngFor="let interest of interstList">
+          <li>
+            <div class="experience-card">
+              <figure
+                class="card-banner img-holder"
+                style="--width: 64; --height: 64"
+              >
+                <img
+                  [src]="getImage(interest.image)"
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                  alt="Creating is a privilege but it’s also a gift"
+                  class="img-cover"
+                />
+              </figure>
+
+              <div class="card-content">
+                <div class="company-content">
+                  <h4
+                    class="headline headline-4 card-title"
+                    style="width: 100%; margin-bottom: 0px"
+                  >
+                    <a href="#" class="link hover-2">{{ interest.title }}</a>
+                  </h4>
+                </div>
+                <div class="card-grid-contianer">
+                  <ul *ngFor="let item of interest.keys">
+                    <li style="font-size: 12px"><b>-</b> {{ item.key }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-2" id="languages" aria-label="languages">
+  <div class="container">
+    <div class="card aside-card" *ngIf="educationList.length">
+      <h3 class="headline headline-2 aside-title">
+        <span class="span">Languages Speak</span>
+      </h3>
+      <ul class="">
+        <li>
+          <div>
+            <h4 class="headline">
+              <a href="#" class="link hover-2">English</a>
+            </h4>
+            <p>Native or bilingual proficiency</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

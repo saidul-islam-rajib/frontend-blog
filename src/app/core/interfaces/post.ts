@@ -22,7 +22,7 @@ export interface SectionItem {
   itemId: string;
   itemTitle: string;
   itemDescription: string;
-  itemImageLink: string;
+  itemImage: string;
 }
 
 export interface PostTopic {

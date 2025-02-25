@@ -33,7 +33,6 @@ export class PostComponent implements OnInit {
       this.postService.getPostById(postId).subscribe({
         next: (data) => {
           this.post = data;
-          console.log("list of post : ", this.post)
         },
         error: (err) => {
           console.log('Error: ', err);
@@ -49,6 +48,8 @@ export class PostComponent implements OnInit {
     this.showInputField = true;
   }
   getImage(logo: any): string{
-    return this.imageService.getImage(logo);
+    const response = this.imageService.getImage(logo);
+    console.log("image response : ", response)
+    return response;
   }
 }

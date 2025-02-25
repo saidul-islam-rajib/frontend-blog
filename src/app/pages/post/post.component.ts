@@ -49,7 +49,6 @@ export class PostComponent implements OnInit {
   }
   getImage(logo: any): string{
     const response = this.imageService.getImage(logo);
-    console.log("image response : ", response)
     return response;
   }
 }

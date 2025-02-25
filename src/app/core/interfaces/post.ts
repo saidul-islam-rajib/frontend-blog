@@ -14,6 +14,7 @@ export interface Post {
 export interface PostSection {
   sectionId: string;
   sectionTitle: string;
+  sectionImage: string;
   sectionDescription: string;
   items: SectionItem[];
 }

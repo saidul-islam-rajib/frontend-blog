@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { PaginatedDashboard } from 'src/app/core/interfaces/dashboard';
+import { ImageService } from 'src/app/core/services/common/image.service';
 import { DashboardService } from 'src/app/core/services/dashboard.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class DashboardComponent {
 
   constructor(
     private router: Router,
-    private dashboardService: DashboardService
+    private dashboardService: DashboardService,
+    private imageService: ImageService
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +36,7 @@ export class DashboardComponent {
     this.dashboardService.getPaginatedPosts(pageIndex).subscribe({
       next: (response) => {
         this.paginatedData = response;
+        console.log("list of post data with pagination : ", this.paginatedData)
       },
       error: (err) => {
         console.error('Error:', err);
@@ -81,5 +84,9 @@ export class DashboardComponent {
       pages.push(totalPages);
     }
     return pages;
+  }
+
+  getImage(logo: any): string{
+    return this.imageService.getImage(logo);
   }
 }

@@ -33,6 +33,7 @@ export class PostComponent implements OnInit {
       this.postService.getPostById(postId).subscribe({
         next: (data) => {
           this.post = data;
+          console.log("list of post : ", this.post)
         },
         error: (err) => {
           console.log('Error: ', err);

@@ -7,6 +7,7 @@ export interface PaginatedDashboard{
 export interface Dashboard {
   postId: string;
   postTitle: string;
+  postImage: string;
   postAbstract: string;
   conclusion: string;
   readingMinute: number;

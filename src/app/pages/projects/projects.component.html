@@ -12,11 +12,11 @@
               style="--width: 250; --height: 200"
             >
               <img
-                src="../../../assets/images/Rajib-profile.jpg"
+                [src]="getImage(project.projectImage)"
                 width="250"
                 height="200"
                 loading="lazy"
-                alt="Helpful Tips for Working from Home as a Freelancer"
+                alt="{{ project.projectTitle }}"
                 class="img-cover"
               />
             </figure>
@@ -25,7 +25,9 @@
               <h3 class="headline headline-4 card-title">
                 <a href="#" class="link hover-2">{{ project.projectTitle }}</a>
               </h3>
-              <p class="post-date">{{ project.displayDate | date: "MMMM dd, yyyy" }}</p>
+              <p class="post-date">
+                {{ project.displayDate | date : "MMMM dd, yyyy" }}
+              </p>
 
               <p class="card-text">
                 {{ project.projectSummary }}

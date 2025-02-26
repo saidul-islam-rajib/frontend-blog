@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Project } from 'src/app/core/interfaces/project';
+import { ImageService } from 'src/app/core/services/common/image.service';
 import { ProjectService } from 'src/app/core/services/project.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class ProjectsComponent implements OnInit {
   projectList: Project[] = [];
   constructor(
     private fb: FormBuilder,
-    private projectService : ProjectService
+    private projectService : ProjectService,
+    private imageService: ImageService
   ){
   }
 
@@ -65,6 +67,10 @@ export class ProjectsComponent implements OnInit {
 
       feedbackForm.reset();
     }
+  }
+
+  getImage(image: any): string{
+    return this.imageService.getImage(image);
   }
 
 }

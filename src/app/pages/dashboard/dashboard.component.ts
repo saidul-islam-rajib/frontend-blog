@@ -36,7 +36,6 @@ export class DashboardComponent {
     this.dashboardService.getPaginatedPosts(pageIndex).subscribe({
       next: (response) => {
         this.paginatedData = response;
-        console.log("list of post data with pagination : ", this.paginatedData)
       },
       error: (err) => {
         console.error('Error:', err);

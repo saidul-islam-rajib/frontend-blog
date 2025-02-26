@@ -44,7 +44,6 @@ export class ProjectsComponent implements OnInit {
     this.projectService.getProject().subscribe({
       next:(data) => {
         this.projectList = data;
-        console.log("Projects : ", this.projectList);
       },
       error: (err) => {
         console.error("Project Error: ", err);

@@ -35,7 +35,6 @@ export class PostComponent implements OnInit {
           this.post = data;
         },
         error: (err) => {
-          console.log('Error: ', err);
           this.router.navigate(['not-found']);
         },
       });

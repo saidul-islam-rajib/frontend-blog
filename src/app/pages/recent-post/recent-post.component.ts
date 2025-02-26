@@ -32,7 +32,7 @@ export class RecentPostComponent {
         });
       },
       error:(err) => {
-        console.log("recent post error : ", err);
+        this.router.navigate(['not-found']);
       }
     })
   }
@@ -47,7 +47,7 @@ export class RecentPostComponent {
         this.userNames[userId] = user.fullname;
       },
       error: (err) => {
-        console.log('Error fetching user name: ', err);
+        this.router.navigate(['not-found']);
       }
     });
   }

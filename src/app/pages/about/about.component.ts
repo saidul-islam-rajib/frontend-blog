@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AdditionalSkill } from 'src/app/core/interfaces/additional-skill';
 import { Education } from 'src/app/core/interfaces/education';
 import { Experience } from 'src/app/core/interfaces/experience';
@@ -14,7 +15,6 @@ import { ExperienceService } from 'src/app/core/services/experience.service';
 import { InterestService } from 'src/app/core/services/interest.service';
 import { ProjectService } from 'src/app/core/services/project.service';
 import { PublicationService } from 'src/app/core/services/publication.service';
-import { UserInformationService } from 'src/app/core/services/user-information.service';
 
 @Component({
   selector: 'app-about',
@@ -37,7 +37,6 @@ export class AboutComponent implements OnInit {
   projectList: Project[] = [];
 
   constructor(
-    private readonly userInformationService: UserInformationService,
     private experienceService : ExperienceService,
     private durationService: CalculateDurationService,
     private educationService: EducationService,
@@ -45,11 +44,11 @@ export class AboutComponent implements OnInit {
     private additionalSkillService: AdditionalSkillService,
     private interestService: InterestService,
     private projectService: ProjectService,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private router: Router
   ){}
 
   ngOnInit(): void{
-    this.loadUserInformation();
     this.loadExperiences();
     this.loadEducations();
     this.loadPublication();
@@ -58,24 +57,13 @@ export class AboutComponent implements OnInit {
     this.laodProject();
   }
 
-  loadUserInformation(): void {
-    this.userInformationService.getUserInformation().subscribe({
-      next:(data) => {
-        this.user = data;
-      },
-      error: (err) => {
-        console.error('User Information Error:', err);
-      }
-    });
-  }
-
   loadExperiences(): void {
     this.experienceService.getExperiences().subscribe({
       next:(data) => {
         this.experiences = data;
       },
       error: (err) => {
-        console.error('Experience Error:', err);
+        this.router.navigate(['not-found']);
       }
     });
   }
@@ -85,8 +73,8 @@ export class AboutComponent implements OnInit {
       next:(data) => {
         this.educationList = data;
       },
-      error: (err) => {
-        console.error('Education Error:', err);
+      error: () => {
+        this.router.navigate(['not-found']);
       }
     });
   }
@@ -96,8 +84,8 @@ export class AboutComponent implements OnInit {
       next:(data) => {
         this.publicationList = data;
       },
-      error: (err) => {
-        console.error("Publication Error: ", err);
+      error: () => {
+        this.router.navigate(['not-found']);
       }
     });
   }
@@ -106,10 +94,9 @@ export class AboutComponent implements OnInit {
     this.additionalSkillService.getAdditionalSkills().subscribe({
       next:(data) => {
         this.additionalSkillList = data;
-        console.log("Additional skill list : ", this.additionalSkillList)
       },
-      error: (err) => {
-        console.error("Additional Skill Error: ", err);
+      error: () => {
+        this.router.navigate(['not-found']);
       }
     });
   }
@@ -118,10 +105,9 @@ export class AboutComponent implements OnInit {
     this.interestService.getInterest().subscribe({
       next:(data) => {
         this.interstList = data;
-        console.log("Interest list : ", this.interstList);
       },
-      error: (err) => {
-        console.error("Interest Skill Error: ", err);
+      error: () => {
+        this.router.navigate(['not-found']);
       }
     });
   }
@@ -129,10 +115,9 @@ export class AboutComponent implements OnInit {
     this.projectService.getProject().subscribe({
       next:(data) => {
         this.projectList = data;
-        console.log("Project list : ", this.projectList);
       },
       error: (err) => {
-        console.error("Project Error: ", err);
+        this.router.navigate(['not-found']);
       }
     });
   }

@@ -1625,3 +1625,9 @@ blockquote {
 .like-comment {
   grid-template-columns: 0.5fr 0.5fr;
 }
+
+.img-cover {
+  object-fit: fill;
+  width: 100%;
+  height: 100%;
+}

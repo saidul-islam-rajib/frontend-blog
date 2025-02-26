@@ -1,21 +1,20 @@
 <!--
   - #TOPICS
 -->
-<section  class="section feature" aria-label="topics" id="topics">
-  <div class="container">
+<section  class="section feature" aria-label="topics" id="topics" *ngIf="topicList.length">
+  <div class="container"  >
     <h2 class="headline custom-heading section-title">
       <span class="span">Subjects Covered</span>
     </h2><hr>
 
-    <div class="card topic-card">
+    <div class="card topic-card" >
       <div class="card-content">
         <h2 class="headline headline-3 section-title card-title" id="topic-label">
           Hot topics
         </h2>
 
         <p class="card-text">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime nostrum voluptatibus, odio pariatur animi excepturi eveniet facilis impedit velit perferendis!
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit deleniti, rem nobis itaque corporis possimus. Hic veniam architecto dolore ducimus?
+          Throughout my life journey, I have gained extensive knowledge across various fields. This personal blog app serves as a space where I share insights, experiences, and lessons learned. Explore a diverse range of topics, each reflecting my curiosity, expertise, and passion for continuous learning.
         </p>
 
         <div class="btn-group">
@@ -56,7 +55,7 @@
   </div>
 </section>
 
-<section  class="section-2 feature" aria-label="topics" id="topics">
+<section  class="section-2 feature" aria-label="topics" id="topics" *ngIf="topicList.length" >
   <div class="container">
     <h1 class="headline section-title custom-heading">
       <span class="span">Topic with Tags</span>

@@ -5,16 +5,19 @@
 
   <ul class="comment-list">
     <blockquote>“We appreciate your feedback...“</blockquote>
-    <li *ngIf="comment_list && comment_list.length > 0;">
+    <li *ngIf="comment_list && comment_list.length > 0">
       <div class="comment-card" *ngFor="let comment of comment_list">
-        <div class="profile-card">
-          <figure class="profile-banner img-holder">
+        <div class="experience-card">
+          <figure
+            class="card-banner img-holder"
+            style="--width: 64; --height: 64"
+          >
             <img
-              src="./assets/images/author-6.png"
-              width="32"
-              height="32"
+              [src]="getImage(comment.image)"
+              width="64"
+              height="64"
               loading="lazy"
-              alt="Jane Cooper"
+              alt="{{ comment.postTitle }}"
             />
           </figure>
 
@@ -28,6 +31,6 @@
         </div>
       </div>
     </li>
-    <hr>
+    <hr />
   </ul>
 </div>

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FeedbackInterface } from 'src/app/core/interfaces/feedback';
 import { CommentService } from 'src/app/core/services/comment.service';
+import { ImageService } from 'src/app/core/services/common/image.service';
 
 @Component({
   selector: 'app-feedback',
@@ -10,7 +11,10 @@ import { CommentService } from 'src/app/core/services/comment.service';
 export class FeedbackComponent implements OnInit {
   comment_list: FeedbackInterface[] | null = [];
   @Input() postId!: string;
-  constructor(private commentService: CommentService) {}
+  constructor(
+    private commentService: CommentService,
+    private imageService: ImageService
+  ) {}
 
   ngOnInit(): void {
     this.commentService.getCommentByPostId(this.postId).subscribe({
@@ -21,5 +25,9 @@ export class FeedbackComponent implements OnInit {
         console.log('Error: ', err);
       },
     });
+  }
+
+  getImage(image: any) : string{
+    return this.imageService.getImage(image);
   }
 }

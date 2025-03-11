@@ -6,6 +6,7 @@ import { Experience } from 'src/app/core/interfaces/experience';
 import { Interest } from 'src/app/core/interfaces/interest';
 import { Project } from 'src/app/core/interfaces/project';
 import { Publication } from 'src/app/core/interfaces/publication';
+import { User } from 'src/app/core/interfaces/user';
 import { UserInformation } from 'src/app/core/interfaces/user-information';
 import { AdditionalSkillService } from 'src/app/core/services/additional-skill.service';
 import { CalculateDurationService } from 'src/app/core/services/common/calculate-duration.service';
@@ -15,6 +16,7 @@ import { ExperienceService } from 'src/app/core/services/experience.service';
 import { InterestService } from 'src/app/core/services/interest.service';
 import { ProjectService } from 'src/app/core/services/project.service';
 import { PublicationService } from 'src/app/core/services/publication.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-about',
@@ -37,6 +39,7 @@ export class AboutComponent implements OnInit {
   projectList: Project[] = [];
 
   constructor(
+    private userService: UserService,
     private experienceService : ExperienceService,
     private durationService: CalculateDurationService,
     private educationService: EducationService,
@@ -49,12 +52,25 @@ export class AboutComponent implements OnInit {
   ){}
 
   ngOnInit(): void{
+    this.loadUserInformation();
     this.loadExperiences();
     this.loadEducations();
     this.loadPublication();
     this.loadAdditionalSkill();
     this.loadInterest();
     this.laodProject();
+  }
+
+  loadUserInformation(): void {
+    this.userService.getDefaultUser().subscribe({
+      next:(data) => {
+        console.log("user data : ", data)
+        this.user = data;
+      },
+      error: (err) => {
+        this.router.navigate(['not-found']);
+      }
+    });
   }
 
   loadExperiences(): void {
